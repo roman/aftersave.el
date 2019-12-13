@@ -40,15 +40,6 @@ hook."
                (lambda (e) (if (symbolp e) e))
                hook))))
 
-(defun aftersave/-get-all-hooks ()
-  (let (hlist (list))
-    (mapatoms (lambda (a)
-                (if (and (not (null (string-match ".*-hook"
-                                                  (symbol-name a))))
-                         (not (functionp a)))
-                    (add-to-list 'hlist a))))
-    hlist))
-
 (defun aftersave/-get-hook-func-names (&optional local)
   "Get all the names of the functions associated to the `after-save-hook'.
 
