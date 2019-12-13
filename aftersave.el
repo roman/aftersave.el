@@ -5,7 +5,8 @@
 ;; Author: Roman Gonzalez <open-source@roman-gonzalez.info>
 ;; Mantainer: Roman Gonzalez <open-source@roman-gonzalez.info>
 ;; Created: 13 Dec 2019
-;; Keywords: Hook
+;; Keywords: maint, processes, tools
+;; URL: https://github.com/roman/aftersave.el
 ;; Version: 0.0.1
 
 ;; Code inspired by ideas from Tavis Rudd
@@ -24,7 +25,7 @@
 
 ;;; Code:
 
-(defun aftersave/-get-hook-funcs (&optional local)
+(defun aftersave--get-hook-funcs (&optional local)
   "Return all the functions that are associated to the `after-save-hook'.
 
 `LOCAL' tells the function to use the buffer-local version of the
@@ -34,21 +35,20 @@ hook."
              after-save-hook
            ;; else get global value
            (with-temp-buffer
-             after-save-hook))
-         ))
+             after-save-hook))))
     (delq nil (mapcar
                (lambda (e) (if (symbolp e) e))
                hook))))
 
-(defun aftersave/-get-hook-func-names (&optional local)
+(defun aftersave--get-hook-func-names (&optional local)
   "Get all the names of the functions associated to the `after-save-hook'.
 
 `LOCAL' tells the function to use the buffer-local version of the
 hook."
-  (mapcar 'symbol-name (aftersave/-get-hook-funcs local)))
+  (mapcar 'symbol-name (aftersave--get-hook-funcs local)))
 
 
-(defun aftersave/-remove-hook (fname &optional local)
+(defun aftersave--remove-hook (fname &optional local)
   "Remove a callback function from the `after-save-hook'.
 
 `FNAME' is the name of the function, and `LOCAL' tells the
@@ -60,7 +60,7 @@ function to use the buffer-local version of the hook."
                local))
 
 ;;;###autoload
-(defun aftersave/remove-hook (fname &optional local)
+(defun aftersave-remove-hook (fname &optional local)
   "Remove a registered function from the `after-save-hook'.
 
 `FNAME' is the name of the function, and `LOCAL' tells the
@@ -72,13 +72,13 @@ true."
                 (let ((local (equal current-prefix-arg '(4))))
                   (ido-completing-read
                    "aWhich function: "
-                   (aftersave/-get-hook-func-names local)))))
+                   (aftersave--get-hook-func-names local)))))
   (let ((local (or local
                    (equal current-prefix-arg '(4)))))
-    (aftersave/-remove-hook fname local)))
+    (aftersave--remove-hook fname local)))
 
 ;;;###autoload
-(defun aftersave/add-hook (fname &optional local)
+(defun aftersave-add-hook (fname &optional local)
   "Add a function to the `after-save-hook' list.
 
 `FNAME' is the name of the function, and `LOCAL' tells the
