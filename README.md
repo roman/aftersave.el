@@ -5,8 +5,10 @@ on my session; at some point, I stop and create a quick function on my
 `*scratch*` that executes a bunch of steps in one go and add an
 `after-save-hook` for it on my current buffer.
 
-This package allows me to not even think about hooks, and just register it
-through an interactive command.
+This package helps removing manual steps in the development cycle. If you
+need to execute the same commands after a save (run tests, restart browser,
+etc.), this package allows you to add an Emacs function in the
+after-save-hook of the editor (or the local buffer).
 
 ![aftersave](https://raw.github.com/roman/aftersave.el/assets/aftersave_el.gif)
 
