@@ -1,4 +1,4 @@
-;;; aftersave.el --- Convinient way to add after-save hooks on the fly
+;;; aftersave.el --- Convenient way to add after-save hooks on the fly
 
 ;; Copyright (C) 2019 Roman Gonzalez
 
