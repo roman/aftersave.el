@@ -18,13 +18,13 @@ after-save-hook of the editor (or the local buffer).
   ```elisp
   (require 'aftersave)
   ```
-2. Then `M-x aftersave/add-hook`
+2. Then `M-x aftersave-add-hook`
 3. Select your preferred function to execute after a save
 4. Profit!
 
 If you at some point, you want to stop execute the given function after a save:
 
-1. `M-x aftersave/remove-hook`
+1. `M-x aftersave-remove-hook`
 2. Pick the function you want to remove
 3. Done!
 
